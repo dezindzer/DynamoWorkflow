@@ -1,0 +1,252 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "9. Enable or disable joints",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "6c698da0ab864a9187ba6aacb6cc3fe9",
+      "Inputs": [
+        {
+          "Id": "52899d25e54a41f3a4f4e05ecc915dbf",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b8d5dcda42b646b58de2d8ff89b067c4",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "WombatDynamo.Wall.AllowDisallowJoins@Revit.Elements.Wall,bool",
+      "Id": "8cf0fcbc6cb84a66b3e559fe62978560",
+      "Inputs": [
+        {
+          "Id": "668605bf6b614dd58ade7449870c408c",
+          "Name": "wall",
+          "Description": "Wall",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "688ef56e38154548bb9764cce28c4149",
+          "Name": "allow",
+          "Description": "bool",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d06c65290fe442c8b08a07e617863ecd",
+          "Name": "Wall",
+          "Description": "Wall",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Enable or Disable joining behavior at both ends of a Wall\n\nWall.AllowDisallowJoins (wall: Wall, allow: bool): Wall"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfType, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "5f5b427cf52f48ca8f8d0fe88c8b8be9",
+      "Inputs": [
+        {
+          "Id": "8884cd7686a04260848ce79865fecb85",
+          "Name": "element type",
+          "Description": "An element type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ae9f29f7685244ffb36c22c9dabbd7e4",
+          "Name": "elements",
+          "Description": "All elements in the active document of a given type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All elements in the active document of a given type."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementTypes, DSRevitNodesUI",
+      "SelectedIndex": 341,
+      "NodeType": "ExtensionNode",
+      "Id": "a2c5a7de16594963a247cec3237c3495",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "172b30b339af4f178e27437a1a523ab0",
+          "Name": "Types",
+          "Description": "The selected Types",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All element subtypes."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "c5097f5b0f644131a4331f14dab7ab92",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4507c02d5c6a4ff089a975a262a0d4e8",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d06c65290fe442c8b08a07e617863ecd",
+      "End": "52899d25e54a41f3a4f4e05ecc915dbf",
+      "Id": "f2c7582ff4104541aaa52ce6c7651f10"
+    },
+    {
+      "Start": "ae9f29f7685244ffb36c22c9dabbd7e4",
+      "End": "668605bf6b614dd58ade7449870c408c",
+      "Id": "5a370e5a4c6e46d7b7dfee7da7b74f8d"
+    },
+    {
+      "Start": "172b30b339af4f178e27437a1a523ab0",
+      "End": "8884cd7686a04260848ce79865fecb85",
+      "Id": "73e13f2137994078a36f21f47fb9466d"
+    },
+    {
+      "Start": "4507c02d5c6a4ff089a975a262a0d4e8",
+      "End": "688ef56e38154548bb9764cce28c4149",
+      "Id": "e4fbbfe2f3b14782aec4fa3eeac39d97"
+    }
+  ],
+  "Dependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.3.8810",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -2745.48389825693,
+      "EyeY": 6324.26863374901,
+      "EyeZ": 2933.9622861252965,
+      "LookX": 359.90216030558622,
+      "LookY": -4961.7968231912673,
+      "LookZ": -4583.8639812460815,
+      "UpX": 0.044672104254034978,
+      "UpY": 0.82114920913369949,
+      "UpZ": -0.56896254660619583
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "6c698da0ab864a9187ba6aacb6cc3fe9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1055.0321098579275,
+        "Y": 1807.4705943844983
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Wall.AllowDisallowJoins",
+        "Id": "8cf0fcbc6cb84a66b3e559fe62978560",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 844.45430682768824,
+        "Y": 1808.7426083884625
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "All Elements of Type",
+        "Id": "5f5b427cf52f48ca8f8d0fe88c8b8be9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 558.78597840983218,
+        "Y": 1632.2540311134333
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Element Types",
+        "Id": "a2c5a7de16594963a247cec3237c3495",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 435.54682113607623,
+        "Y": 1776.69077890281
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Boolean",
+        "Id": "c5097f5b0f644131a4331f14dab7ab92",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 667.580138625325,
+        "Y": 1871.62561014767
+      }
+    ],
+    "Annotations": [],
+    "X": -91.487721040756242,
+    "Y": -1506.1094461512575,
+    "Zoom": 1.1267201477379964
+  }
+}

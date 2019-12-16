@@ -1,0 +1,324 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "1.0 Cente rRooms And Tags",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "3a662c03-2a28-4b54-b990-480d8fc4b59a",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "b98778a2d98749e298c0b7b044d5ba32",
+      "Inputs": [
+        {
+          "Id": "1941e0e96ebf4a9ca55176aad5f6965c",
+          "Name": "Rooms_Spaces",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "aa65f2256b3d4e6f9409d3f9bb5e28b6",
+          "Name": "Rooms/Spaces",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8501053da5ed48f593e9daeaf1a7bb00",
+          "Name": "Locations",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "This node will attempt to reset the location of the room or space to its default center location"
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.Categories, DSRevitNodesUI",
+      "SelectedIndex": 424,
+      "NodeType": "ExtensionNode",
+      "Id": "1116de8ebacd44888c0f3c200f7b4ecd",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f20f11125a674c5f8183629b0fb83e66",
+          "Name": "Category",
+          "Description": "The selected Category.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "All built-in categories."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "9a3d07f2fd5349ec86bd92e592977351",
+      "Inputs": [
+        {
+          "Id": "d1908a3008a34059a9f4b38f7b68743c",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b17a231d0af14e4891a631a268366adb",
+          "Name": "Elements",
+          "Description": "An element type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "ecce77dc-1290-438e-a056-970b256fd553",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "585d2829459549f78700b04e897fd2d3",
+      "Inputs": [
+        {
+          "Id": "768e82e02dd64b19885f861c388173f7",
+          "Name": "passThrough",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d3e59e8c15284ac29a6d2d71bdd29823",
+          "Name": "waitFor",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0372eb0157ff42eebdcf531772b66ead",
+          "Name": "passThrough",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Forces a sequential order of execution. The node wired into the output of the Passthrough node will be executed *after* the node wired into the waitFor input (e.g. important for some Revit operations). The value of the passThrough input will be passed on to the node wired into the output port of the Passthrough node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Rhythm.Revit.Elements.RoomTag.CenterOnRoomLocation@Revit.Elements.Element[]",
+      "Id": "12478761440f44ad9740279eee179e43",
+      "Inputs": [
+        {
+          "Id": "768de2fabec24dc9b5a7dcf0cb497c62",
+          "Name": "roomTag",
+          "Description": "The room tag to set.\n\nElement[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "172b93bd57b9467bacf5726af4088880",
+          "Name": "roomTag",
+          "Description": "The room tag.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "This node will set the room tag to the same as the room location.\n\nRoomTag.CenterOnRoomLocation (roomTag: Element[]): Element[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "e620b7b6-640d-435e-982a-15fc1eeb8bdb",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "417cf8e96fbe40489672a5460d62f20e",
+      "Inputs": [
+        {
+          "Id": "5c18beba813145f29f96ad5322c9883d",
+          "Name": "toggle",
+          "Description": "bool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e875a8f3a8494afb9447887a17a02c3e",
+          "Name": "rooms",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "This will collect placed rooms in current file."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "aa65f2256b3d4e6f9409d3f9bb5e28b6",
+      "End": "d3e59e8c15284ac29a6d2d71bdd29823",
+      "Id": "a949e483f5074222afdc9efce1667ed8"
+    },
+    {
+      "Start": "f20f11125a674c5f8183629b0fb83e66",
+      "End": "768e82e02dd64b19885f861c388173f7",
+      "Id": "5bddefee6b454506bb0959e33f9cba79"
+    },
+    {
+      "Start": "b17a231d0af14e4891a631a268366adb",
+      "End": "768de2fabec24dc9b5a7dcf0cb497c62",
+      "Id": "413042357c0147e2a415ada38a507fc0"
+    },
+    {
+      "Start": "0372eb0157ff42eebdcf531772b66ead",
+      "End": "d1908a3008a34059a9f4b38f7b68743c",
+      "Id": "fe7dac6eea3e489998ddefddc03af630"
+    },
+    {
+      "Start": "e875a8f3a8494afb9447887a17a02c3e",
+      "End": "1941e0e96ebf4a9ca55176aad5f6965c",
+      "Id": "40cdf075fb2647599eda0988cdb181df"
+    }
+  ],
+  "Dependencies": [
+    "3a662c03-2a28-4b54-b990-480d8fc4b59a",
+    "ecce77dc-1290-438e-a056-970b256fd553",
+    "e620b7b6-640d-435e-982a-15fc1eeb8bdb"
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.0.3.8810",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -63.725204467773438,
+      "EyeY": 99.408271789550781,
+      "EyeZ": 52.4108772277832,
+      "LookX": 58.725204467773438,
+      "LookY": -88.408271789550781,
+      "LookZ": -60.4108772277832,
+      "UpX": 0.38977539539337158,
+      "UpY": 0.82903754711151123,
+      "UpZ": -0.40096366405487061
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Room or Space reset center location",
+        "Id": "b98778a2d98749e298c0b7b044d5ba32",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2155.2314049988322,
+        "Y": 231.53184689575528
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Categories",
+        "Id": "1116de8ebacd44888c0f3c200f7b4ecd",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2155.2314049988322,
+        "Y": 123.53184689575522
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "All Elements of Category",
+        "Id": "9a3d07f2fd5349ec86bd92e592977351",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2928.8314049988321,
+        "Y": 164.53184689575525
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Passthrough",
+        "Id": "585d2829459549f78700b04e897fd2d3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2552.0314049988324,
+        "Y": 164.53184689575525
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ʳʰʸᵗʰᵐ|RoomTag.CenterOnRoomLocation",
+        "Id": "12478761440f44ad9740279eee179e43",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3203.2314049988327,
+        "Y": 164.53184689575525
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Collector.PlacedRooms",
+        "Id": "417cf8e96fbe40489672a5460d62f20e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1860.0314049988324,
+        "Y": 231.53184689575522
+      }
+    ],
+    "Annotations": [],
+    "X": -1062.8766532338291,
+    "Y": 52.182055578356625,
+    "Zoom": 0.63555245909567148
+  }
+}
