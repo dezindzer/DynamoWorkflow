@@ -1,0 +1,457 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DY 2.3 - B5 - Replace family",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Application.Document": {
+        "Key": "Revit.Application.Document",
+        "Value": "RevitNodes.dll"
+      },
+      "Application.Document.Current": {
+        "Key": "Revit.Application.Document",
+        "Value": "RevitNodes.dll"
+      },
+      "Revit.Application.Document.Current": {
+        "Key": "Revit.Application.Document",
+        "Value": "RevitNodes.dll"
+      },
+      "DSCore.List": {
+        "Key": "DSCore.List",
+        "Value": "DSCoreNodes.dll"
+      },
+      "Get": {
+        "Key": "DesignScript.Builtin.Get",
+        "Value": "DesignScriptBuiltin.dll"
+      }
+    }
+  },
+  "Inputs": [
+    {
+      "Id": "1445f7a5ad304cc6a6f57ae8a04110ed",
+      "Name": "String",
+      "Type": "string",
+      "Value": "C:\\Users\\nikola.markovic\\Desktop\\EXPORT",
+      "Description": "Creates a string.",
+      "SelectedIndex": 0
+    },
+    {
+      "Id": "d07d7d430a5f4bd787b8dbebc16c8fa3",
+      "Name": "String",
+      "Type": "string",
+      "Value": "C:\\Users\\nikola.markovic\\Desktop\\Import",
+      "Description": "Creates a string.",
+      "SelectedIndex": 0
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "d4ffafa4-27e9-455a-a3ae-e3bd4b5caf34",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "9367666f1e0b49fe993440f20cd585d7",
+      "Inputs": [
+        {
+          "Id": "6c21bb5238dd46a0ba3056f2da81c08d",
+          "Name": "dir",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "ce3dbf307cb246f4bbff06cd9cc64852",
+          "Name": "searchString",
+          "Description": "string\nDefault value : \"*\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "396c49a4d7cb4e72990732e0c856c37a",
+          "Name": "files",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "C:\\Users\\nikola.markovic\\Desktop\\EXPORT",
+      "Id": "1445f7a5ad304cc6a6f57ae8a04110ed",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "79903815a88d4cd29ccacc6a037010d0",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"*.rfa\";",
+      "Id": "a77bfa2ff36a4bba9a8c6d76798cb564",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "b300ee0e66694c479f52f42200aaa27a",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "d4ffafa4-27e9-455a-a3ae-e3bd4b5caf34",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "0f11a6c00a5c423d82968851b473fa7a",
+      "Inputs": [
+        {
+          "Id": "b518528b92fc4904878840f6a6820a71",
+          "Name": "dir",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "4f8c654a73d144f3a13bece1bd693f63",
+          "Name": "searchString",
+          "Description": "string\nDefault value : \"*\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4624529c01c745fa9f4613f1ce068a68",
+          "Name": "files",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": ""
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "C:\\Users\\nikola.markovic\\Desktop\\Import",
+      "Id": "d07d7d430a5f4bd787b8dbebc16c8fa3",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6600098af3ff44679de162b2e7ba9648",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"*.rfa\";",
+      "Id": "cc7a2caa3d7e4f80b69d0caccb26f2e7",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e337a4871b244324bca4841eb5be4d8f",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\nclr.AddReference('RevitAPI')\r\nfrom Autodesk.Revit.DB import *\r\nclr.AddReference('RevitServices')\r\n\r\n# Revit and Dynamo modules\r\nfrom Autodesk.Revit.DB import Document, FamilySource, IFamilyLoadOptions\r\nfrom RevitServices.Persistence import DocumentManager\r\nfrom RevitServices.Transactions import TransactionManager\r\n\r\nuiapp = DocumentManager.Instance.CurrentUIApplication\r\napp = uiapp.Application\r\n\r\n#input assigned to IN variable\r\npaths = IN[0]\r\ndocpaths = IN[1]\r\n\r\n#wrap input inside a list if not a list.\r\nif not isinstance(paths, list): \r\n    paths = [paths]\r\nif not isinstance(docpaths, list): \r\n    docpaths = [docpaths]\r\n\r\n#ensure loaded families can overwrite existing families.\r\nclass FamilyOption(IFamilyLoadOptions):\r\n    def OnFamilyFound(self, familyInUse, overwriteParameterValues):\r\n        overwriteParameterValues = True\r\n        return True\r\n\r\n    def OnSharedFamilyFound(self, sharedFamily, familyInUse, source, overwriteParameterValues):\r\n        source = FamilySource.Family\r\n        overwriteParameterValues = True\r\n        return True     \r\n\r\n#core data processing\r\ndocuments = []\r\nfamilies = []\r\nfor docpath in docpaths:\r\n    doc=app.OpenDocumentFile(docpath)\r\n    documents.append(doc)\r\nfor path in paths:\r\n    family_doc = app.OpenDocumentFile(path)\r\n    families.append(family_doc)\r\n\r\nfor document in documents:\r\n    map(lambda family: family.LoadFamily(document, FamilyOption()),\r\n    families)\r\n\r\nmap(lambda x: x.Close(False), families)\r\nmap(lambda x: x.Close(True), documents)\r\n\r\n# output assigned to the OUT variable\r\nOUT = [paths, docpaths]\r\n\r\n#core data processing\r\nfor path in paths:\r\n    try:\r\n        famDoc = app.OpenDocumentFile(path)\r\n        famDoc.LoadFamily(doc, FamilyOption())\r\n        famDoc.Close(False)\r\n    except:\r\n        pass\r\n\r\n#output assigned the OUT variable\r\nOUT = paths",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "f91757b75c9e44ed8f363b3100f336d1",
+      "Inputs": [
+        {
+          "Id": "c979179ff6514f2881f2fc014c3da4bc",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "bb4aace89fe949e0b26038e6cad51b61",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ed4da10591dd4a858d2c31d1050750b6",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "396c49a4d7cb4e72990732e0c856c37a",
+      "End": "c979179ff6514f2881f2fc014c3da4bc",
+      "Id": "b4e4680fa4e74f98b4e86881fd0b2b40"
+    },
+    {
+      "Start": "79903815a88d4cd29ccacc6a037010d0",
+      "End": "b518528b92fc4904878840f6a6820a71",
+      "Id": "bad48eb137994bd297ef2e1810db8a6e"
+    },
+    {
+      "Start": "b300ee0e66694c479f52f42200aaa27a",
+      "End": "ce3dbf307cb246f4bbff06cd9cc64852",
+      "Id": "868a8a2829c643429ee6ec9f38136419"
+    },
+    {
+      "Start": "4624529c01c745fa9f4613f1ce068a68",
+      "End": "bb4aace89fe949e0b26038e6cad51b61",
+      "Id": "2f3c923067614344a15986367f666556"
+    },
+    {
+      "Start": "6600098af3ff44679de162b2e7ba9648",
+      "End": "6c21bb5238dd46a0ba3056f2da81c08d",
+      "Id": "4d302eaa28f44a0696424fb995aea7fd"
+    },
+    {
+      "Start": "e337a4871b244324bca4841eb5be4d8f",
+      "End": "4f8c654a73d144f3a13bece1bd693f63",
+      "Id": "da017f599b6945948b48506b571ea4b6"
+    }
+  ],
+  "Dependencies": [
+    "d4ffafa4-27e9-455a-a3ae-e3bd4b5caf34"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Bakery",
+      "Version": "2019.5.8",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "9367666f1e0b49fe993440f20cd585d7",
+        "0f11a6c00a5c423d82968851b473fa7a"
+      ]
+    }
+  ],
+  "Thumbnail": "",
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.12",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "1.10",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.12.1.8246",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Directory.ContentsAll",
+        "Id": "9367666f1e0b49fe993440f20cd585d7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -3000.8419064472505,
+        "Y": 1030.6575402572735
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "1445f7a5ad304cc6a6f57ae8a04110ed",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -3272.5575864455873,
+        "Y": 1288.9487168715218
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "a77bfa2ff36a4bba9a8c6d76798cb564",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -3142.56803046312,
+        "Y": 1089.5837671687336
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Directory.ContentsAll",
+        "Id": "0f11a6c00a5c423d82968851b473fa7a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -3002.4012274450556,
+        "Y": 1318.3617898933603
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String",
+        "Id": "d07d7d430a5f4bd787b8dbebc16c8fa3",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -3272.9115262173937,
+        "Y": 978.73255424042179
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "cc7a2caa3d7e4f80b69d0caccb26f2e7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -3144.1273514609256,
+        "Y": 1377.2880168048202
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "apdejter 3000",
+        "Id": "f91757b75c9e44ed8f363b3100f336d1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -2633.685324185351,
+        "Y": 1137.0988319018661
+      }
+    ],
+    "Annotations": [
+      {
+        "Id": "b6d48ab6713447839919bde994db0730",
+        "Title": "Lokacija familija sa kojima se update-uju druge familije",
+        "Nodes": [
+          "9367666f1e0b49fe993440f20cd585d7",
+          "a77bfa2ff36a4bba9a8c6d76798cb564",
+          "d07d7d430a5f4bd787b8dbebc16c8fa3"
+        ],
+        "Left": -3282.9115262173937,
+        "Top": 882.73255424042179,
+        "Width": 506.06961977014316,
+        "Height": 299.85121292831184,
+        "FontSize": 36.0,
+        "InitialTop": 978.73255424042179,
+        "InitialHeight": 255.85121292831184,
+        "TextblockHeight": 86.0,
+        "Background": "#FFC1D676"
+      },
+      {
+        "Id": "63b190a7422140c3bfe24b64f58fd237",
+        "Title": "Lokacija familija koje treba da se update-uju",
+        "Nodes": [
+          "1445f7a5ad304cc6a6f57ae8a04110ed",
+          "0f11a6c00a5c423d82968851b473fa7a",
+          "cc7a2caa3d7e4f80b69d0caccb26f2e7"
+        ],
+        "Left": -3282.5575864455873,
+        "Top": 1192.9487168715218,
+        "Width": 504.15635900053167,
+        "Height": 277.33929993329843,
+        "FontSize": 36.0,
+        "InitialTop": 1288.9487168715218,
+        "InitialHeight": 233.33929993329843,
+        "TextblockHeight": 86.0,
+        "Background": "#FFFF7BAC"
+      }
+    ],
+    "X": 3893.57968991471,
+    "Y": -829.62718214973847,
+    "Zoom": 1.0674976494338659
+  }
+}

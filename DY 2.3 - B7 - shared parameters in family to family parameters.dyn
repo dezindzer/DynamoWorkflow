@@ -1,0 +1,443 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DY 2.3 - B7 - shared parameters in family to family parameters",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "983a0604-2e61-42ba-8d3b-3da8d29bac20",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "84bf3d0a0b404211b0a72534e8d56ab9",
+      "Inputs": [
+        {
+          "Id": "eb10d5abe5dc43c895f4fbd99cc84110",
+          "Name": "document",
+          "Description": " Use only if you want to query other document\n\nvar[]..[]\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9b96bf5ca4f54f1797688b7e35a10561",
+          "Name": "Refresh",
+          "Description": "Toggle to refresh\n\nbool\nDefault value : true",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7c54d11c766946c98c64d60d0cceee95",
+          "Name": "elements",
+          "Description": " The parameters as elements",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e5d19a8502854e5c8f68bdd0905bc8e3",
+          "Name": "names",
+          "Description": " The names of the parameters",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7d3870e756c543af9525aa5485a01906",
+          "Name": "groups",
+          "Description": " The parameter groups",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "910e07c8730c4fec9a67db29834dc058",
+          "Name": "isShared",
+          "Description": " Is the parameter shared?",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "27fd5346bdc94e999cc599a0f9d1741b",
+          "Name": "isInstance",
+          "Description": " Is the parameter instance based?",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Obtains all parameters in the document, as well as their properties."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "62049669090c4d08afc247447034c31d",
+      "Inputs": [
+        {
+          "Id": "4e18ab743f6e4f96a105375bbd1c1ac3",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b748748062654a07b528adc057c86777",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.FilterByBoolMask@var[]..[],var[]..[]",
+      "Id": "4e1a349fa4e44f46881488287daa9dfa",
+      "Inputs": [
+        {
+          "Id": "06abdb04e6bd4ba188f5884254a56c8f",
+          "Name": "list",
+          "Description": "List to filter.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "23422f761d3c4ee59e6ac3c0378ad035",
+          "Name": "mask",
+          "Description": "List of booleans representing a mask.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8501d6ae1a564fbbbd9f49f22f0c007f",
+          "Name": "in",
+          "Description": "Items whose mask index is true.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "678a6a8a193f4d0da79ad9696d610c38",
+          "Name": "out",
+          "Description": "Items whose mask index is false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Filters a sequence by looking up corresponding indices in a separate list of booleans.\n\nList.FilterByBoolMask (list: var[]..[], mask: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "13bcc01018ad46478ec441c3079370a7",
+      "Inputs": [
+        {
+          "Id": "6124a30833664e9a83f6325086581fed",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "f2b541d0f15f4e89b52a30c537e12593",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Orchid.RevitFamily.SharedParameter.Convert@Orchid.RevitProject.Common.Document,string,bool",
+      "Id": "6bb4726ae6934d008f0a02b372e8d146",
+      "Inputs": [
+        {
+          "Id": "67f7767b03d44d438d77b82a8b2ab60b",
+          "Name": "familyDocument",
+          "Description": "Family document (rfa) as Orchid document\n\nDocument\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1b27e8193ae94c82b424a597a7371d4e",
+          "Name": "parameterName",
+          "Description": "The name of the parameter to delete\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "8f00c6580c5e4e29b1e35b0a4683afac",
+          "Name": "instance",
+          "Description": "Is instance parameter, otherwise it's a type parameter\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ad0d3df331e44eaea122a3dfc8b29b66",
+          "Name": "Parameter",
+          "Description": "Parameter as Orchid type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Convert shared parameter to family parameter\n\nSharedParameter.Convert (familyDocument: Document = null, parameterName: string, instance: bool = false): Parameter"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.FilterByBoolMask@var[]..[],var[]..[]",
+      "Id": "dbe9907dd5e540aea4915f7f60aacc13",
+      "Inputs": [
+        {
+          "Id": "17f6705c04ae475fbfcfea7b420e84e8",
+          "Name": "list",
+          "Description": "List to filter.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1da621b26e984c1f91777b3b55dcb454",
+          "Name": "mask",
+          "Description": "List of booleans representing a mask.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "697d8cd949874a27b4b39bbde7fdfbc2",
+          "Name": "in",
+          "Description": "Items whose mask index is true.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "1995a78de2a94da4a9bd1f14542ba9f7",
+          "Name": "out",
+          "Description": "Items whose mask index is false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Filters a sequence by looking up corresponding indices in a separate list of booleans.\n\nList.FilterByBoolMask (list: var[]..[], mask: var[]..[]): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e5d19a8502854e5c8f68bdd0905bc8e3",
+      "End": "06abdb04e6bd4ba188f5884254a56c8f",
+      "Id": "36e626ef59fc4d6e95b40ac7b734304d"
+    },
+    {
+      "Start": "910e07c8730c4fec9a67db29834dc058",
+      "End": "23422f761d3c4ee59e6ac3c0378ad035",
+      "Id": "8a550f8f73c7418db04aca910379ca25"
+    },
+    {
+      "Start": "910e07c8730c4fec9a67db29834dc058",
+      "End": "1da621b26e984c1f91777b3b55dcb454",
+      "Id": "e11e6642d9534808893305540a5052f9"
+    },
+    {
+      "Start": "27fd5346bdc94e999cc599a0f9d1741b",
+      "End": "17f6705c04ae475fbfcfea7b420e84e8",
+      "Id": "aba6545e753f4bc39e3fbb9f6fa892c5"
+    },
+    {
+      "Start": "b748748062654a07b528adc057c86777",
+      "End": "8f00c6580c5e4e29b1e35b0a4683afac",
+      "Id": "0a209d57417e4fca835db07f43a24073"
+    },
+    {
+      "Start": "8501d6ae1a564fbbbd9f49f22f0c007f",
+      "End": "6124a30833664e9a83f6325086581fed",
+      "Id": "9cdc8c3e905a44aa99350ec02c73c67f"
+    },
+    {
+      "Start": "f2b541d0f15f4e89b52a30c537e12593",
+      "End": "1b27e8193ae94c82b424a597a7371d4e",
+      "Id": "66c415bf09da48bab1f8475eb5cfdc32"
+    },
+    {
+      "Start": "697d8cd949874a27b4b39bbde7fdfbc2",
+      "End": "4e18ab743f6e4f96a105375bbd1c1ac3",
+      "Id": "8410df218a0f447086de56962207a3e8"
+    }
+  ],
+  "Dependencies": [
+    "983a0604-2e61-42ba-8d3b-3da8d29bac20"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Crumple",
+      "Version": "2021.5.27",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "84bf3d0a0b404211b0a72534e8d56ab9"
+      ]
+    },
+    {
+      "Name": "Orchid",
+      "Version": "230.1.0.7697",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "6bb4726ae6934d008f0a02b372e8d146"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "© FamilyParameters",
+        "Id": "84bf3d0a0b404211b0a72534e8d56ab9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1117.6099409650287,
+        "Y": -36.344019408308725
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "62049669090c4d08afc247447034c31d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1786.4668401368183,
+        "Y": 279.15241822448507
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.FilterByBoolMask",
+        "Id": "4e1a349fa4e44f46881488287daa9dfa",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1568.2150133515872,
+        "Y": -103.86422634954354
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "13bcc01018ad46478ec441c3079370a7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1780.3108202576079,
+        "Y": -108.98273509412485
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "SharedParameter.Convert",
+        "Id": "6bb4726ae6934d008f0a02b372e8d146",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2234.9642788632918,
+        "Y": 93.745523254358545
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.FilterByBoolMask",
+        "Id": "dbe9907dd5e540aea4915f7f60aacc13",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1563.8462624874444,
+        "Y": 153.89207463487756
+      }
+    ],
+    "Annotations": [],
+    "X": -1203.4730331966402,
+    "Y": 184.03292056096615,
+    "Zoom": 1.0992168298902731
+  }
+}

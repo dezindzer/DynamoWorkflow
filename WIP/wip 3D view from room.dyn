@@ -1,0 +1,701 @@
+{
+  "Uuid": "8a2de733-5827-4306-b7c6-602d280f1b42",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "wip 3D view from room",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "4dbaadda96fe4ce8b9b49f51729a06f5",
+      "Inputs": [
+        {
+          "Id": "b7f8b32694794eb4a393079c23eea74d",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d6844d5684db4d129f8525a0829b6680",
+          "Name": "Elements",
+          "Description": "An element type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Category.ByName@string",
+      "Id": "be003e22b292439cba8a273eee98a941",
+      "Inputs": [
+        {
+          "Id": "8cf2ed10a75245c7a9a9bf321db312c6",
+          "Name": "name",
+          "Description": "The built in category name.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "09b345698b7d4b2cbc5aec6c5b52ff35",
+          "Name": "Category",
+          "Description": "Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Gets a Revit category by the built-in category name.\n\nCategory.ByName (name: string): Category"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.StringInput, CoreNodeModels",
+      "NodeType": "StringInputNode",
+      "InputValue": "Rooms",
+      "Id": "d3d2dae4140b4b35b8354792c69c61b1",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "4d05e597467742b4a1b9528e3a4ca80b",
+          "Name": "",
+          "Description": "String",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Creates a string."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "archilab.Revit.Elements.Room.Name@Revit.Elements.Element",
+      "Id": "c51323faa7774fbb883654ce9d308d62",
+      "Inputs": [
+        {
+          "Id": "d3f5ca2158374d08b79f56eac52fcd4e",
+          "Name": "room",
+          "Description": "Room element.\n\nElement",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9f3e106551d24ac999d0f1f604bb4672",
+          "Name": "name",
+          "Description": "Name of the room.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Room Name\n\nRoom.Name (room: Element): string"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "a705246687ed4250b1fc04433d77e88b",
+      "Inputs": [
+        {
+          "Id": "9fde62ee610d41d699c0a8eeeaafb654",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1d801454a1864dc6bb7e9a9f3ae204dc",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Room.Number",
+      "Id": "bb7a1c749a984af9bfffa2d89344e800",
+      "Inputs": [
+        {
+          "Id": "9d1fac809b0e4080a628184a74ee37f3",
+          "Name": "room",
+          "Description": "Revit.Elements.Room",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "4a40e2ac6a6d463586c0a77323b25494",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get room number\n\nRoom.Number: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Parameters",
+      "Id": "e16b51b8a1a442c3a5f82766b5d177a9",
+      "Inputs": [
+        {
+          "Id": "a4c82ae49c1149289259286ee3882b92",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5f991e03706e4b6fb85ef592ee464602",
+          "Name": "Parameter[]",
+          "Description": "Parameter[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Obtain all of the Parameters from an Element, sorted by Name.\n\nElement.Parameters: Parameter[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "d941bb4f-7fcb-494f-8793-63a24fc6c7e1",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "c96204e352af4223942699a177a3f6d1",
+      "Inputs": [
+        {
+          "Id": "4cfef1c1e354402091489a72589aea8f",
+          "Name": "views",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "19bacc2a9a4940d1a476b78aaae3e181",
+          "Name": "boundingBox",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d2a6de6f3f20446d8e80349572a91869",
+          "Name": "hasBox",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the section box of any view as a bounding box in Dynamo. Does not support section boxes with rotations applied to them (will return the original section box before rotation), and will actually return a bounding box even if a view doesn't have one applied. Use with care!"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Geometry.BoundingBox",
+      "Id": "9c39e59871ab45a6b405dda424ff63cc",
+      "Inputs": [
+        {
+          "Id": "a7d0e82c330f4d908fd5934fe489f862",
+          "Name": "geometry",
+          "Description": "Autodesk.DesignScript.Geometry.Geometry",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "96c5e430dd10489abb904484d77aff7c",
+          "Name": "BoundingBox",
+          "Description": "BoundingBox",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the BoundingBox containing the given piece of Geometry\n\nGeometry.BoundingBox: BoundingBox"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Geometry",
+      "Id": "98f4fce47083485186152f74fef096af",
+      "Inputs": [
+        {
+          "Id": "d84ea0953d0b4b4abf51d14b8639104d",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9979c8117cc040209fa70a31bc57569b",
+          "Name": "var[]",
+          "Description": "var[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get all of the Geometry associated with this object\n\nElement.Geometry ( ): var[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "dtGeometry.Deconstruct.Point@Autodesk.DesignScript.Geometry.Point",
+      "Id": "aeea176708b64808bb10353d7eb74f91",
+      "Inputs": [
+        {
+          "Id": "09264d41f41a4174be402b3ccff61c32",
+          "Name": "point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a210ad17b39c46768ecf129940cca615",
+          "Name": "x",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "0b980e7e638d436ab2840efb2d320340",
+          "Name": "y",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f92806c1c87847118232d79be062ce7f",
+          "Name": "z",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Deconstruct a point element to return the x, y and z values\n\nDeconstruct.Point (point: Point): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "dtGeometry.Deconstruct.Solid@Autodesk.DesignScript.Geometry.Solid",
+      "Id": "7f12867161514395a4077e0a78c73003",
+      "Inputs": [
+        {
+          "Id": "f9e9296abc78492abe430eadeb45aef0",
+          "Name": "solid",
+          "Description": "Solid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "835325f99fd44e2494834b3326649e5b",
+          "Name": "edges",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "969395b634d844e7a74f1c7062fbfc31",
+          "Name": "faces",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "35afee0c3e6c433aaf952628118ed5bb",
+          "Name": "vertices",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7372933f745345c2a9f6d5af737d5629",
+          "Name": "area",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "12464a2f3cb342f3b1976b2ea93c665c",
+          "Name": "volume",
+          "Description": "var",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Deconstruct a solid element to return the edges, faces, vertices, area and volume.\n\nDeconstruct.Solid (solid: Solid): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.PolySurface.BySolid@Autodesk.DesignScript.Geometry.Solid",
+      "Id": "09e385be69c248b994d03b382b9f9bfd",
+      "Inputs": [
+        {
+          "Id": "ee61c34f82e34e168dfc651d90f3b8e4",
+          "Name": "solid",
+          "Description": "Solid which surfaces to use\n\nSolid",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dc9e944aeabf4feeaf0cb569c47d1938",
+          "Name": "PolySurface",
+          "Description": "PolySurface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Make Polysurface by surfaces of Solid.\n\nPolySurface.BySolid (solid: Solid): PolySurface"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "d6844d5684db4d129f8525a0829b6680",
+      "End": "d3f5ca2158374d08b79f56eac52fcd4e",
+      "Id": "de3344130ba64749bee5d8061cb7f890"
+    },
+    {
+      "Start": "d6844d5684db4d129f8525a0829b6680",
+      "End": "9d1fac809b0e4080a628184a74ee37f3",
+      "Id": "0b03f15f83224d17b96834d9cb14fd55"
+    },
+    {
+      "Start": "d6844d5684db4d129f8525a0829b6680",
+      "End": "9fde62ee610d41d699c0a8eeeaafb654",
+      "Id": "1df2bc46325f44cab86fd51009dd8307"
+    },
+    {
+      "Start": "d6844d5684db4d129f8525a0829b6680",
+      "End": "a4c82ae49c1149289259286ee3882b92",
+      "Id": "352414b238f24d129b55b4c2bf7f107c"
+    },
+    {
+      "Start": "09b345698b7d4b2cbc5aec6c5b52ff35",
+      "End": "b7f8b32694794eb4a393079c23eea74d",
+      "Id": "33d66eda875d435cbefa25cea0aa0263"
+    },
+    {
+      "Start": "4d05e597467742b4a1b9528e3a4ca80b",
+      "End": "8cf2ed10a75245c7a9a9bf321db312c6",
+      "Id": "bad4ba7a430e4482afdeb77bad3fa105"
+    },
+    {
+      "Start": "1d801454a1864dc6bb7e9a9f3ae204dc",
+      "End": "4cfef1c1e354402091489a72589aea8f",
+      "Id": "002e1e89ae7c4e0bbf05f69bb202aeef"
+    },
+    {
+      "Start": "1d801454a1864dc6bb7e9a9f3ae204dc",
+      "End": "d84ea0953d0b4b4abf51d14b8639104d",
+      "Id": "847f5eb7d2a241e7aa8f3d4f71cd2da2"
+    },
+    {
+      "Start": "96c5e430dd10489abb904484d77aff7c",
+      "End": "09264d41f41a4174be402b3ccff61c32",
+      "Id": "c566dde49436427d846de55818b18f97"
+    },
+    {
+      "Start": "9979c8117cc040209fa70a31bc57569b",
+      "End": "a7d0e82c330f4d908fd5934fe489f862",
+      "Id": "c11967fdd5564a18ab7c198598a36303"
+    },
+    {
+      "Start": "9979c8117cc040209fa70a31bc57569b",
+      "End": "f9e9296abc78492abe430eadeb45aef0",
+      "Id": "e25b04c2f0aa42c38c0902cef5344656"
+    }
+  ],
+  "Dependencies": [
+    "d941bb4f-7fcb-494f-8793-63a24fc6c7e1"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "archi-lab.net",
+      "Version": "2020.23.13",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "c51323faa7774fbb883654ce9d308d62"
+      ]
+    },
+    {
+      "Name": "Crumple",
+      "Version": "2021.5.27",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "c96204e352af4223942699a177a3f6d1"
+      ]
+    },
+    {
+      "Name": "designtech",
+      "Version": "1.0.8",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "aeea176708b64808bb10353d7eb74f91",
+        "7f12867161514395a4077e0a78c73003"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -3666.6517287765264,
+      "EyeY": 7843.0670880582184,
+      "EyeZ": 1830.4116309572182,
+      "LookX": 4083.9619284369132,
+      "LookY": -6476.0660222955312,
+      "LookZ": -2054.9683802501522,
+      "UpX": 0.60234623457460557,
+      "UpY": 0.73845534062588281,
+      "UpZ": -0.30308863983149531
+    },
+    "NodeViews": [
+      {
+        "Id": "4dbaadda96fe4ce8b9b49f51729a06f5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "All Elements of Category",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 609.60000000000025,
+        "Y": 240.00000000000006
+      },
+      {
+        "Id": "be003e22b292439cba8a273eee98a941",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Category.ByName",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 391.20000000000016,
+        "Y": 241.60000000000002
+      },
+      {
+        "Id": "d3d2dae4140b4b35b8354792c69c61b1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "String",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 308.0,
+        "Y": 250.40000000000009
+      },
+      {
+        "Id": "c51323faa7774fbb883654ce9d308d62",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Room.Name",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1113.607177190207,
+        "Y": 435.04792530413033
+      },
+      {
+        "Id": "a705246687ed4250b1fc04433d77e88b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Watch",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1135.0943426140404,
+        "Y": 190.05001993782253
+      },
+      {
+        "Id": "bb7a1c749a984af9bfffa2d89344e800",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Room.Number",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1116.0916966992008,
+        "Y": 552.83301278761132
+      },
+      {
+        "Id": "e16b51b8a1a442c3a5f82766b5d177a9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Element.Parameters",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 715.048498548039,
+        "Y": -142.82024411322919
+      },
+      {
+        "Id": "c96204e352af4223942699a177a3f6d1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "© ViewSectionBox",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1491.0353114743461,
+        "Y": 71.14443557596195
+      },
+      {
+        "Id": "9c39e59871ab45a6b405dda424ff63cc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Geometry.BoundingBox",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1508.1837049461467,
+        "Y": -199.36323755344628
+      },
+      {
+        "Id": "98f4fce47083485186152f74fef096af",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Element.Geometry",
+        "ShowGeometry": false,
+        "Excluded": false,
+        "X": 1180.0812220983421,
+        "Y": -63.5056361327301
+      },
+      {
+        "Id": "aeea176708b64808bb10353d7eb74f91",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Deconstruct.Point",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1882.3318062257936,
+        "Y": -194.94863229631449
+      },
+      {
+        "Id": "7f12867161514395a4077e0a78c73003",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Deconstruct.Solid",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1945.2509526143972,
+        "Y": 36.054519444701612
+      },
+      {
+        "Id": "09e385be69c248b994d03b382b9f9bfd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "PolySurface.BySolid",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 1949.745177356441,
+        "Y": 259.86691159844867
+      }
+    ],
+    "Annotations": [],
+    "X": -915.03549300415216,
+    "Y": 423.8087973930912,
+    "Zoom": 0.89003114654688287
+  }
+}

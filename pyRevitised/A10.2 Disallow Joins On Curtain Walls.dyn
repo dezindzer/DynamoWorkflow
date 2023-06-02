@@ -1,0 +1,139 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "A10.2 Disallow Joins On Curtain Walls",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Revit.Category": {
+        "Key": "Revit.Elements.Category",
+        "Value": "RevitNodes.dll"
+      },
+      "Revit.Elements.Category": {
+        "Key": "Revit.Elements.Category",
+        "Value": "RevitNodes.dll"
+      }
+    }
+  },
+  "Inputs": [
+    {
+      "Id": "ecd2434a295f4adbb8274db386e36791",
+      "Name": "True = Allow / False = Disallow",
+      "Type": "boolean",
+      "Value": "false",
+      "Description": "Selection between a true and false."
+    }
+  ],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\nclr.AddReference(\"RevitAPI\")\nclr.AddReference(\"ProtoGeometry\")\nclr.AddReference(\"RevitNodes\")\nclr.AddReference(\"RevitServices\")\nclr.AddReference(\"RevitAPIUI\")\nclr.AddReference(\"DSCoreNodes\")\nimport DSCore\nfrom DSCore import *\nimport Autodesk\nfrom Autodesk.Revit.DB import *\n\nimport Revit\nclr.ImportExtensions(Revit.Elements)\nclr.ImportExtensions(Revit.GeometryConversion)\n\n# import DocumentManager and TransactionManager\nclr.AddReference(\"RevitServices\")\nimport RevitServices\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\nfrom Autodesk.Revit.UI import TaskDialog\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.DesignScript.Geometry import *\n\nclr.AddReference(\"System.Windows.Forms\")\nfrom System.Windows.Forms import Form,Label,FormStartPosition\n\n# get current Revit document\ndoc = DocumentManager.Instance.CurrentDBDocument\n\n##### End of generic stuff imports\ndataEnteringNode = IN\ncollector = FilteredElementCollector(doc)\ncollector.WhereElementIsNotElementType().WhereElementIsViewIndependent();\n\nkolektor = collector.OfCategory(BuiltInCategory.OST_Walls).ToElements()\n\nspoji = IN[0]\n\n# Unwrap input\ninputs = kolektor\ncurtainWalls = []\n# Initiate counter\nn = 0\n\n\n# Get only curtain walls from input\nfor e in inputs:\n\ttry:\n\t\telementType = doc.GetElement(e.GetTypeId())\n\t\tif elementType.Kind == WallKind.Curtain:\n\t\t\tcurtainWalls.append(e)\n\t\t\tn = n + 1\n\texcept:\n\t\tprint(\"not curtain wall\")\n\t\t\ntext = \"Broj obrađenih panela je : \" + str(n)\n\n\nmsgBox=TaskDialog\n\nmsgBox.Show(\"Trolovi su uspešno obavili posao\", text)\n\n# Start Transaction\ndoc = DocumentManager.Instance.CurrentDBDocument\nTransactionManager.Instance.EnsureInTransaction(doc)\n\n# Code to run\nfor e in curtainWalls:\n\tif spoji:\n\t\tAutodesk.Revit.DB.WallUtils.AllowWallJoinAtEnd(e, 0)\n\t\tAutodesk.Revit.DB.WallUtils.AllowWallJoinAtEnd(e, 1)\n\telse :\n\t\tAutodesk.Revit.DB.WallUtils.DisallowWallJoinAtEnd(e, 0)\n\t\tAutodesk.Revit.DB.WallUtils.DisallowWallJoinAtEnd(e, 1)\n\t\n# End Transaction\nTransactionManager.Instance.TransactionTaskDone()\n\n\n\n# Wrap results\nOUT = curtainWalls\n",
+      "VariableInputPorts": true,
+      "Id": "ae071ad691a948c0aa12ad6058a694db",
+      "Inputs": [
+        {
+          "Id": "5720f6d1d5764094a216637f409c7872",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2d4e854c37f3498793e734dfbcfd8be5",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Input.BoolSelector, CoreNodeModels",
+      "NodeType": "BooleanInputNode",
+      "InputValue": false,
+      "Id": "ecd2434a295f4adbb8274db386e36791",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bf58c21ab1df4392ba1029ecba0f3878",
+          "Name": "",
+          "Description": "Boolean",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Selection between a true and false."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "bf58c21ab1df4392ba1029ecba0f3878",
+      "End": "5720f6d1d5764094a216637f409c7872",
+      "Id": "5f21e00e347a41d2aaa56e0937df17e5"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Allow/Disallow Joins",
+        "Id": "ae071ad691a948c0aa12ad6058a694db",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 312.274193534734,
+        "Y": -28.027104648682
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "True = Allow / False = Disallow",
+        "Id": "ecd2434a295f4adbb8274db386e36791",
+        "IsSetAsInput": true,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 91.23113941361396,
+        "Y": -27.327468556095141
+      }
+    ],
+    "Annotations": [],
+    "X": 42.25497914113771,
+    "Y": 229.65405892797483,
+    "Zoom": 1.0380057754601364
+  }
+}

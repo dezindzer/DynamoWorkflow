@@ -1,0 +1,416 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "A07.1 Center Rooms And Tags",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "Revit.Elements.Element": {
+        "Key": "Revit.Elements.Element",
+        "Value": "RevitNodes.dll"
+      },
+      "Revit.Elements": {
+        "Key": "Revit.Elements.Category",
+        "Value": "RevitNodes.dll"
+      },
+      "DSCore.List": {
+        "Key": "DSCore.List",
+        "Value": "DSCoreNodes.dll"
+      },
+      "Rhythm.Collector": {
+        "Key": "Rhythm.Revit.Selection.Collector",
+        "Value": "RhythmRevit.dll"
+      },
+      "Rhythm.Revit.Selection.Collector": {
+        "Key": "Rhythm.Revit.Selection.Collector",
+        "Value": "RhythmRevit.dll"
+      },
+      "Autodesk.DesignScript.Geometry.Vector": {
+        "Key": "Autodesk.DesignScript.Geometry.Vector",
+        "Value": "ProtoGeometry.dll"
+      },
+      "RoomTag": {
+        "Key": "Rhythm.Revit.Elements.RoomTag",
+        "Value": "RhythmRevit.dll"
+      },
+      "Rooms": {
+        "Key": "Rhythm.Revit.Elements.Rooms",
+        "Value": "RhythmRevit.dll"
+      },
+      "DataStream": {
+        "Key": "Orchid.Common.DataStream",
+        "Value": "OrchidRB.dll"
+      },
+      "Revit.Document.Current": {
+        "Key": "Revit.Application.Document",
+        "Value": "RevitNodes.dll"
+      },
+      "Revit.Document": {
+        "Key": "Revit.Application.Document",
+        "Value": "RevitNodes.dll"
+      },
+      "Revit.Application.Document.Current": {
+        "Key": "Revit.Application.Document",
+        "Value": "RevitNodes.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Copyright(c) 2017, john pierson\r\n# @60secondrevit, http://sixtysecondrevit.com\r\n\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# Import DocumentManager and TransactionManager\r\nclr.AddReference(\"RevitServices\")\r\nimport RevitServices\r\nfrom RevitServices.Persistence import DocumentManager\r\nfrom RevitServices.Transactions import TransactionManager\r\n\r\n# Import RevitAPI\r\nclr.AddReference(\"RevitAPI\")\r\nimport Autodesk\r\nfrom Autodesk.Revit.DB import *\r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\nuiapp = DocumentManager.Instance.CurrentUIApplication\r\napp = uiapp.Application\r\n\r\nfrom System.Collections.Generic import *\r\n\r\n\r\n#The inputs to this node will be stored as a list in the IN variable.\r\ndataEnteringNode = IN\r\ncollector = FilteredElementCollector(doc)\r\nroofs = collector.OfCategory(BuiltInCategory.OST_RoomTags).ToElements()\r\n\r\n\r\nOUT = roofs;",
+      "VariableInputPorts": true,
+      "Id": "deee997c823547049432565cadbb7d81",
+      "Inputs": [
+        {
+          "Id": "878e8e3da6b846da9a5d35f6deb2f705",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "e478a89eac8a451aa1b30824631f3746",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Copyright(c) 2017, john pierson\n# @60secondrevit, http://sixtysecondrevit.com\n\nimport clr\nclr.AddReference('ProtoGeometry')\nfrom Autodesk.DesignScript.Geometry import *\n\n# Import DocumentManager and TransactionManager\nclr.AddReference(\"RevitServices\")\nimport RevitServices\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\n# Import RevitAPI\nclr.AddReference(\"RevitAPI\")\nimport Autodesk\nfrom Autodesk.Revit.DB import *\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuiapp = DocumentManager.Instance.CurrentUIApplication\napp = uiapp.Application\n\nfrom System.Collections.Generic import *\n\n\n#The inputs to this node will be stored as a list in the IN variable.\ndataEnteringNode = IN\ncollector = FilteredElementCollector(doc)\nrooms = collector.OfCategory(BuiltInCategory.OST_Rooms).ToElements()\n\nroomInstances = []\nfor i in rooms:\n\tif i.Area != 0:\n\t\troomInstances.append(i)\n\nOUT = roomInstances",
+      "VariableInputPorts": true,
+      "Id": "22cd9a9246cc43a7992b86a32469d243",
+      "Inputs": [
+        {
+          "Id": "bbd4b8616774485e92c1777e1cec01e9",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "de12c477b8e04d6281e78cc4817b3e77",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "DSRevitNodesUI.ElementsOfCategory, DSRevitNodesUI",
+      "NodeType": "ExtensionNode",
+      "Id": "77fd3f4e266344c6904780ea61e3463a",
+      "Inputs": [
+        {
+          "Id": "a6ba23c47d094b009bbdcb291ed71f6e",
+          "Name": "Category",
+          "Description": "The Category",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "80386118e24f4565baaf98e58029eba5",
+          "Name": "Elements",
+          "Description": "An element type.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Get all elements of the specified category from the model."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\nclr.AddReference(\"RevitAPI\")\nclr.AddReference(\"ProtoGeometry\")\nclr.AddReference(\"RevitNodes\")\nclr.AddReference(\"RevitServices\")\nclr.AddReference(\"RevitAPIUI\")\nclr.AddReference(\"DSCoreNodes\")\nimport DSCore\nfrom DSCore import *\nimport Autodesk\nimport Revit\nclr.ImportExtensions(Revit.GeometryConversion)\nimport RevitServices\nfrom Autodesk.Revit.UI import TaskDialog\nfrom Autodesk.Revit.DB import *\nfrom Autodesk.DesignScript.Geometry import *\n\nclr.AddReference(\"System.Windows.Forms\")\nfrom System.Windows.Forms import Form,Label,FormStartPosition\n\n#input\nsisenjorita = IN[0]\n\ntext = \"Centriranje je završeno!\"\n\nmsgBox=TaskDialog\nresult = []\n\nif sisenjorita:\n\t\n\tmsgBox.Show(\"Error: \",text)\nelse:\n\tmarkr = mark\n\tpass\n\t\nOUT = text",
+      "VariableInputPorts": true,
+      "Id": "c54bc23919c145da818845a9383fae3c",
+      "Inputs": [
+        {
+          "Id": "3b198c479e8a4f3badedf6c4edc24655",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "65c342cb64184889afa91d41165c2fe8",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "roomTagz = RoomTag.CenterOnRoomLocation(elementz);\ncomp = roomTagz != null;\ntruez = DSCore.List.Flatten(comp, -1);",
+      "Id": "e65e7845d5d343bc9f0560a6307f811d",
+      "Inputs": [
+        {
+          "Id": "c93817992435498d923b5929ee6c80bc",
+          "Name": "elementz",
+          "Description": "elementz",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "8d9b24d017b84e199014c3e58abf96ce",
+          "Name": "",
+          "Description": "roomTagz",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "21ecaac972dd4d69b208a2a06ab41eed",
+          "Name": "",
+          "Description": "comp",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "56712b6fc4c94e70ac908bcbbd41c6c7",
+          "Name": "",
+          "Description": "truez",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "roomz = Rooms.CenterRoom(roomzCollector);\ntagz = DataStream.Await(tagzCollector, roomz);\n\ncategoryz = Revit.Elements.Element.GetCategory(tagz);\n\nDSCore.List.UniqueItems(categoryz);",
+      "Id": "83c4dde622b54fcdb87a6fd63ae1c3a2",
+      "Inputs": [
+        {
+          "Id": "d9adde13e1114865bd368cc7e96bde63",
+          "Name": "roomzCollector",
+          "Description": "roomzCollector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "9bbebeeb54224b6f9c8dc4a868674afc",
+          "Name": "tagzCollector",
+          "Description": "tagzCollector",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1afdb05a751544b48873f875f398e6a6",
+          "Name": "",
+          "Description": "roomz",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "66fdb51eaa5641b599fe18d4324fe634",
+          "Name": "",
+          "Description": "tagz",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "5aaf11c715c844d1beb7069cfc1cf0e4",
+          "Name": "",
+          "Description": "categoryz",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2912c7b172bc47a59c8223a5c0d04931",
+          "Name": "",
+          "Description": "Value of expression at line 6",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "e478a89eac8a451aa1b30824631f3746",
+      "End": "9bbebeeb54224b6f9c8dc4a868674afc",
+      "Id": "964dabeadd174368a2ce7b4feb3ea640"
+    },
+    {
+      "Start": "de12c477b8e04d6281e78cc4817b3e77",
+      "End": "d9adde13e1114865bd368cc7e96bde63",
+      "Id": "a2c20a6cd5084d9a8ed7f4be50e595d6"
+    },
+    {
+      "Start": "80386118e24f4565baaf98e58029eba5",
+      "End": "c93817992435498d923b5929ee6c80bc",
+      "Id": "3d55ac5262434b59a24510bbfa1d717d"
+    },
+    {
+      "Start": "56712b6fc4c94e70ac908bcbbd41c6c7",
+      "End": "3b198c479e8a4f3badedf6c4edc24655",
+      "Id": "26c67fdac9bb4f62aa2a326ba7ecffce"
+    },
+    {
+      "Start": "2912c7b172bc47a59c8223a5c0d04931",
+      "End": "a6ba23c47d094b009bbdcb291ed71f6e",
+      "Id": "03391c3d58164b73bd5c8a2eb27e606b"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 100.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": 2989.972080237259,
+      "EyeY": 19979.540163476551,
+      "EyeZ": -3960.86007487022,
+      "LookX": 21.788315301892908,
+      "LookY": -18492.559648803926,
+      "LookZ": -6592.3205043142689,
+      "UpX": 0.0028028829925694429,
+      "UpY": 0.5299192353689256,
+      "UpZ": -0.848043466515707
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Collector.Element Category (Category) - Room Tags",
+        "Id": "deee997c823547049432565cadbb7d81",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1879.8762022297446,
+        "Y": 202.39195494155481
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Collector.PlacedRooms",
+        "Id": "22cd9a9246cc43a7992b86a32469d243",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2054.2762022297447,
+        "Y": 122.39195494155484
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "All Elements of Category",
+        "Id": "77fd3f4e266344c6904780ea61e3463a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2803.5087085770888,
+        "Y": 202.55439578917134
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "PopUp",
+        "Id": "c54bc23919c145da818845a9383fae3c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 3500.3394631970191,
+        "Y": 229.75439578917135
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "e65e7845d5d343bc9f0560a6307f811d",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2983.9833462132524,
+        "Y": 202.55439578917134
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "83c4dde622b54fcdb87a6fd63ae1c3a2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2219.527417253732,
+        "Y": 122.39195494155481
+      }
+    ],
+    "Annotations": [],
+    "X": -2709.7487551232307,
+    "Y": 454.15217663636895,
+    "Zoom": 1.1880051638861282
+  }
+}

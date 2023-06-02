@@ -1,0 +1,552 @@
+{
+  "Uuid": "2a00aa05-f2fb-48ae-b518-79e0ab95f3b8",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "B00.0 Python skripte",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\n\r\n# Import DocumentManager and TransactionManager\r\nclr.AddReference(\"RevitServices\")\r\nimport RevitServices\r\nfrom RevitServices.Persistence import DocumentManager\r\n\r\n# Import RevitAPI\r\nclr.AddReference(\"RevitAPI\")\r\nimport Autodesk\r\nfrom Autodesk.Revit.DB import *\r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\n\r\n\r\nOUT = [i.Name for i in doc.Settings.Categories]",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "c68a6e4891394d8e962b7c16254dfd87",
+      "Inputs": [
+        {
+          "Id": "2c09c389fb334c1aab688605675b0764",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2bc4e01a0bef4873bba8b6a3cb93c819",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "##### Start of generic stuff imports\n\nimport clr\n\n# import Revit API\nclr.AddReference(\"RevitAPI\")\nimport Autodesk\nfrom Autodesk.Revit.DB import *\n\n# import Revit Elements\nclr.AddReference(\"RevitNodes\")\nimport Revit\nclr.ImportExtensions(Revit.Elements)\n\n# import DocumentManager and TransactionManager\nclr.AddReference(\"RevitServices\")\nimport RevitServices\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\n# get current Revit document\ndoc = DocumentManager.Instance.CurrentDBDocument\n\n##### End of generic stuff imports\n\n\n\n# Unwrap input\ninputs = UnwrapElement( IN[0] )\ncurtainWalls = []\n# Initiate counter\nn = 0\n\n\n# Get only curtain walls from input\nfor e in inputs:\n\ttry:\n\t\telementType = doc.GetElement(e.GetTypeId())\n\t\tif elementType.Kind == WallKind.Curtain:\n\t\t\tcurtainWalls.append(e)\n\t\t\tn = n + 1\n\texcept:\n\t\tprint(\"not curtain wall\")\n\n\n# Start Transaction\nTransactionManager.Instance.EnsureInTransaction(doc)\n\nfor e in curtainWalls:\n    Autodesk.Revit.DB.WallUtils.DisallowWallJoinAtEnd(e, 0)\n    Autodesk.Revit.DB.WallUtils.DisallowWallJoinAtEnd(e, 1)\n\n# End Transaction\nTransactionManager.Instance.TransactionTaskDone()\n\n\n# Wrap results\nOUT = [\"Disallowed joins on walls: \" + str(n), curtainWalls]\n",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "3f049073081c485388242e7cc9909b4c",
+      "Inputs": [
+        {
+          "Id": "16a186ac323143c1b161db88e1beeaea",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d98d6185bb7e495aa17186d6fb293a36",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Copyright(c) 2017, john pierson\n# @60secondrevit, http://sixtysecondrevit.com\n\nimport clr\nclr.AddReference('ProtoGeometry')\nfrom Autodesk.DesignScript.Geometry import *\n\n# Import DocumentManager and TransactionManager\nclr.AddReference(\"RevitServices\")\nimport RevitServices\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\n# Import RevitAPI\nclr.AddReference(\"RevitAPI\")\nimport Autodesk\nfrom Autodesk.Revit.DB import *\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuiapp = DocumentManager.Instance.CurrentUIApplication\napp = uiapp.Application\n\nfrom System.Collections.Generic import *\n\n\n#The inputs to this node will be stored as a list in the IN variable.\ndataEnteringNode = IN\ncollector = FilteredElementCollector(doc)\nrooms = collector.OfCategory(BuiltInCategory.OST_Rooms).ToElements()\n\nroomInstances = []\nfor i in rooms:\n\tif i.Area != 0:\n\t\troomInstances.append(i)\n\nOUT = roomInstances",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "f2ec97e7f0b3466a97e62fabce02d5da",
+      "Inputs": [
+        {
+          "Id": "ec9ac0b2c4f54829a5390cedf8d6cf54",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "178cf2d060774d45ae564970077fae3a",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import sys\r\nimport clr\r\n\r\nclr.AddReference('RevitAPI')\r\nimport Autodesk\r\nfrom Autodesk.Revit.DB import *\r\n\r\nimport System\r\n\r\nlistBPG = dict(zip(System.Enum.GetNames(BuiltInParameterGroup),System.Enum.GetValues(BuiltInParameterGroup)))\r\nout = []\r\nfor name, bpg in listBPG.items():\r\n    labelbpg = LabelUtils.GetLabelFor(bpg)\r\n    out.append([labelbpg, name])\r\n\r\nOUT = out",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "26760fb6b9ec49a8b44083c41dd742f1",
+      "Inputs": [
+        {
+          "Id": "df41e4045ded4496a3b2c05af4cfba5a",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "596e3df2a4b644bdaae5d7029fc2a730",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "# Made by Gavin Crump\r\n# Free for use\r\n# BIM Guru, www.bimguru.com.au\r\n\r\n# Get inputs\r\nitems = IN[0] if isinstance(IN[0], list) else [IN[0]]\r\n\r\n# Convert to strings\r\nstrings = []\r\n\r\nfor i in items:\r\n\ttostr = str(i)\r\n\ttry:\r\n\t\tind = tostr.index(\".\")\r\n\t\tstrings.append(tostr[:ind])\r\n\texcept:\r\n\t\tstrings.append(tostr)\r\n\r\n# Define outputs\r\nOUT = strings",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "db02ce452a2a452fa25a5a36fbf21eec",
+      "Inputs": [
+        {
+          "Id": "bc270040b83042a98cfd8006e50864b6",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5619c5d1aa604a3ebfbde2639bbda739",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\nclr.AddReference('ProtoGeometry')\nfrom Autodesk.DesignScript.Geometry import *\n\nclr.AddReference(\"RevitNodes\")\nimport Revit\nclr.ImportExtensions(Revit.Elements)\n\nclr.ImportExtensions(Revit.GeometryConversion)\n\nclr.AddReference(\"RevitServices\")\nimport RevitServices\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nfrom System.Collections.Generic import *\n\nclr.AddReference(\"RevitAPI\")\nimport Autodesk\nfrom Autodesk.Revit.DB import *\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuiapp = DocumentManager.Instance.CurrentUIApplication\napp = uiapp.Application\nuidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument\n\nselect = []\nelements = UnwrapElement(IN[0])\nuisel = uidoc.Selection\nresult = []\n\nfor i in elements:\n\tselect.append(i.Id)\n\tIcollection = List[ElementId](select)\n\tuisel.SetElementIds(Icollection)\n\tresult.append(\"Seccess\")\nOUT = result",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "76f31a7292144546945504039e887fb7",
+      "Inputs": [
+        {
+          "Id": "985be77852bc401d9b8e0badcb5259ec",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "27ea5a2276804c61a45425ef3e9d0d72",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Copyright(c) 2017, john pierson\r\n# @60secondrevit, http://sixtysecondrevit.com\r\n\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# Import DocumentManager and TransactionManager\r\nclr.AddReference(\"RevitServices\")\r\nimport RevitServices\r\nfrom RevitServices.Persistence import DocumentManager\r\nfrom RevitServices.Transactions import TransactionManager\r\n\r\n# Import RevitAPI\r\nclr.AddReference(\"RevitAPI\")\r\nimport Autodesk\r\nfrom Autodesk.Revit.DB import *\r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\nuiapp = DocumentManager.Instance.CurrentUIApplication\r\napp = uiapp.Application\r\n\r\nfrom System.Collections.Generic import *\r\n\r\n\r\n#The inputs to this node will be stored as a list in the IN variable.\r\ndataEnteringNode = IN\r\ncollector = FilteredElementCollector(doc)\r\nroofs = collector.OfClass(RoofType).ToElements()\r\n\r\n\r\n#OfType(BuiltInCategory.OST_RoofType).ToElements()\r\n\r\n\r\nOUT = roofs;",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "c784d9fee67d4ac3a543e9459db25d17",
+      "Inputs": [
+        {
+          "Id": "c62dcfd6b07c410b9cbb32bcc12d9f91",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "164779a2c8264316ba7e56d683e8ed0c",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Copyright(c) 2017, john pierson\r\n# @60secondrevit, http://sixtysecondrevit.com\r\n\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# Import DocumentManager and TransactionManager\r\nclr.AddReference(\"RevitServices\")\r\nimport RevitServices\r\nfrom RevitServices.Persistence import DocumentManager\r\nfrom RevitServices.Transactions import TransactionManager\r\n\r\n# Import RevitAPI\r\nclr.AddReference(\"RevitAPI\")\r\nimport Autodesk\r\nfrom Autodesk.Revit.DB import *\r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\nuiapp = DocumentManager.Instance.CurrentUIApplication\r\napp = uiapp.Application\r\n\r\nfrom System.Collections.Generic import *\r\n\r\n\r\n#The inputs to this node will be stored as a list in the IN variable.\r\ndataEnteringNode = IN\r\ncollector = FilteredElementCollector(doc)\r\nroofs = collector.OfCategory(BuiltInCategory.OST_Roofs).ToElements()\r\n\r\n\r\nOUT = roofs;",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "748ab6e981b94f4bb3af2deefbce4e6a",
+      "Inputs": [
+        {
+          "Id": "83984e5e3acf43728e0721ab93a2f58c",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "360a6839cb454fff85bcdef89b57719e",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Copyright(c) 2017, john pierson\r\n# @60secondrevit, http://sixtysecondrevit.com\r\n\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# Import DocumentManager and TransactionManager\r\nclr.AddReference(\"RevitServices\")\r\nimport RevitServices\r\nfrom RevitServices.Persistence import DocumentManager\r\nfrom RevitServices.Transactions import TransactionManager\r\n\r\n# Import RevitAPI\r\nclr.AddReference(\"RevitAPI\")\r\nimport Autodesk\r\nfrom Autodesk.Revit.DB import *\r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\nuiapp = DocumentManager.Instance.CurrentUIApplication\r\napp = uiapp.Application\r\n\r\nfrom System.Collections.Generic import *\r\n\r\nspoji = IN[0]\r\n\r\n#The inputs to this node will be stored as a list in the IN variable.\r\ndataEnteringNode = IN\r\ncollector = FilteredElementCollector(doc)\r\ncollector.WhereElementIsNotElementType().WhereElementIsViewIndependent();\r\n\r\nkolektor = collector.OfCategory(BuiltInCategory.OST_Walls).ToElements()\r\n\r\n# Start Transaction\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\nTransactionManager.Instance.EnsureInTransaction(doc)\r\n\r\nzidovi = UnwrapElement(kolektor)\r\n\r\nfor e in zidovi: \r\n\tif spoji:\r\n\t\tWallUtils.DisallowWallJoinAtEnd(e, 0)\r\n\t\tWallUtils.DisallowWallJoinAtEnd(e, 1)\r\n\telse :\r\n\t\tWallUtils.AllowWallJoinAtEnd(e, 0)\r\n\t\tWallUtils.AllowWallJoinAtEnd(e, 1)\r\n\r\n\r\n\r\n\t# End Transaction\r\nTransactionManager.Instance.TransactionTaskDone()\r\n\r\n\r\nOUT = kolektor;",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "cf48b9d377a94752aeb263c37da9f5c5",
+      "Inputs": [
+        {
+          "Id": "44a3520b584d41b9b4a5e67c1118ef5f",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "49a423edbb384a15aefbecba7f9cc056",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Copyright(c) 2017, john pierson\r\n# @60secondrevit, http://sixtysecondrevit.com\r\n\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# Import DocumentManager and TransactionManager\r\nclr.AddReference(\"RevitServices\")\r\nimport RevitServices\r\nfrom RevitServices.Persistence import DocumentManager\r\nfrom RevitServices.Transactions import TransactionManager\r\n\r\n# Import RevitAPI\r\nclr.AddReference(\"RevitAPI\")\r\nimport Autodesk\r\nfrom Autodesk.Revit.DB import *\r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\nuiapp = DocumentManager.Instance.CurrentUIApplication\r\napp = uiapp.Application\r\n\r\nfrom System.Collections.Generic import *\r\n\r\n\r\n#The inputs to this node will be stored as a list in the IN variable.\r\ncollector = FilteredElementCollector(doc)\r\nsheets = collector.OfCategory(BuiltInCategory.OST_Sheets).ToElements()\r\n\r\n\r\nOUT = sheets;",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "45228120b23a4a449f82a18a29be7529",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "59165c663eb64d83ad9aa819cd76f88b",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Copyright(c) 2017, john pierson\r\n# @60secondrevit, http://sixtysecondrevit.com\r\n\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n\r\n# Import DocumentManager and TransactionManager\r\nclr.AddReference(\"RevitServices\")\r\nimport RevitServices\r\nfrom RevitServices.Persistence import DocumentManager\r\nfrom RevitServices.Transactions import TransactionManager\r\n\r\n# Import RevitAPI\r\nclr.AddReference(\"RevitAPI\")\r\nimport Autodesk\r\nfrom Autodesk.Revit.DB import *\r\n\r\ndoc = DocumentManager.Instance.CurrentDBDocument\r\nuiapp = DocumentManager.Instance.CurrentUIApplication\r\napp = uiapp.Application\r\n\r\nfrom System.Collections.Generic import *\r\n\r\n\r\n#The inputs to this node will be stored as a list in the IN variable.\r\ndataEnteringNode = IN\r\ncollector = FilteredElementCollector(doc)\r\nroofs = collector.OfClass(CurtainSystem).ToElements()\r\n\r\n\r\n#OfType(BuiltInCategory.OST_RoofType).ToElements()\r\n\r\n\r\nOUT = roofs;",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "cc90b66c873c4673a263d63fe1ed34ab",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "fab42ad61de04064b394e96da0e96edf",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#Copyright(c) 2015, Konrad K Sobon\r\n# @arch_laboratory, http://archi-lab.net\r\n\r\nimport clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n#The inputs to this node will be stored as a list in the IN variable.\r\ndataEnteringNode = IN\r\n\r\ndef ClearList(_list):\r\n    out = []\r\n    for _list1 in _list:\r\n        if _list1 is None:\r\n            continue\r\n        if isinstance(_list1, list):\r\n             _list1 = ClearList(_list1)\r\n             if not _list1:\r\n                 continue\r\n        out.append(_list1)\r\n    return out\r\n\r\n#Assign your output to the OUT variable\r\nOUT = ClearList(IN[0])",
+      "Engine": "CPython3",
+      "VariableInputPorts": true,
+      "Id": "1f1bb7ff1e82414e9be272e6a3714cb1",
+      "Inputs": [
+        {
+          "Id": "f7ba77e032d347978eb2e3937f457261",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "d963a38b712246b98fc984487db50884",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    }
+  ],
+  "Connectors": [],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Thumbnail": null,
+  "GraphDocumentationURL": null,
+  "ExtensionWorkspaceData": [
+    {
+      "ExtensionGuid": "28992e1d-abb9-417f-8b1b-05e053bee670",
+      "Name": "Properties",
+      "Version": "2.12",
+      "Data": {}
+    },
+    {
+      "ExtensionGuid": "DFBD9CC0-DB40-457A-939E-8C8555555A9D",
+      "Name": "Generative Design",
+      "Version": "1.10",
+      "Data": {}
+    }
+  ],
+  "Author": "None provided",
+  "Linting": {
+    "activeLinter": "None",
+    "activeLinterId": "7b75fb44-43fd-4631-a878-29f4d5d8399a",
+    "warningCount": 0,
+    "errorCount": 0
+  },
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.12.1.8246",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "All Categories",
+        "Id": "c68a6e4891394d8e962b7c16254dfd87",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 225.1263618197811,
+        "Y": 107.0104007229636
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python: Disallow Joins",
+        "Id": "3f049073081c485388242e7cc9909b4c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 261.45516223404763,
+        "Y": 386.43276308176735
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Collector.PlacedRooms",
+        "Id": "f2ec97e7f0b3466a97e62fabce02d5da",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 237.62911373302541,
+        "Y": -158.29210880970254
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "All Parameter Groups",
+        "Id": "26760fb6b9ec49a8b44083c41dd742f1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 261.36061728081108,
+        "Y": 498.12683709302758
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "ToString",
+        "Id": "db02ce452a2a452fa25a5a36fbf21eec",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 709.91375088151312,
+        "Y": 417.24306486189192
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Select in Revit",
+        "Id": "76f31a7292144546945504039e887fb7",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 691.00175183718648,
+        "Y": 656.44557083234281
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Collector.Element type (Class) - RoofType",
+        "Id": "c784d9fee67d4ac3a543e9459db25d17",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 226.54234883192481,
+        "Y": 5.5190801264546963
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Collector.Element Category (Category) - Roof",
+        "Id": "748ab6e981b94f4bb3af2deefbce4e6a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 233.93260863862946,
+        "Y": -72.9444270766032
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Collector.Element Category (Category) - Walls in Model",
+        "Id": "cf48b9d377a94752aeb263c37da9f5c5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 243.85676460226932,
+        "Y": -238.70200899417381
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Collector.Sheets",
+        "Id": "45228120b23a4a449f82a18a29be7529",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 243.6351743888813,
+        "Y": 227.01542064933628
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "CurtainSystem",
+        "Id": "cc90b66c873c4673a263d63fe1ed34ab",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 240.20546357006714,
+        "Y": -533.79698368462982
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Clear List",
+        "Id": "1f1bb7ff1e82414e9be272e6a3714cb1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 717.285867608969,
+        "Y": 538.92612292626814
+      }
+    ],
+    "Annotations": [],
+    "X": 218.32619285693056,
+    "Y": 95.197683455763183,
+    "Zoom": 0.9430846702936333
+  }
+}

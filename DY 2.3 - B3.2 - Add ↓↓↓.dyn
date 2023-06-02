@@ -1,0 +1,425 @@
+{
+  "Uuid": "3c9d0464-8643-5ffe-96e5-ab1769818209",
+  "IsCustomNode": false,
+  "Description": "",
+  "Name": "DY 2.3 - B3.2 - Add ↓↓↓",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"↓↓↓ Elektro Oprema\";\n\"↓↓↓ Nadgradna Oprema\";\n\"↓↓↓ Standardna Oprema\";",
+      "Id": "cbdf929de0414f18aaf084217c94054f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "76930c814e21428fb80f8799fa7bdcc5",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "f231c8fd8c2741fcbbf47dbc7f68c793",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6b63aac3f13f4cda9af3a162f4cfc0e9",
+          "Name": "",
+          "Description": "Value of expression at line 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"Text\";\n\"INVALID\";\ntrue;",
+      "Id": "fe1f11f2d6c543118c93f90025f6e8ae",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "d5252dc48fa04461b92912b13e70ce06",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "29d8dc35747b4790bb6771e5c3b08873",
+          "Name": "",
+          "Description": "Value of expression at line 2",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c072a31758af4877b2c65f7356cbc992",
+          "Name": "",
+          "Description": "Value of expression at line 3",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Orchid.RevitFamily.Parameter.Add@Orchid.RevitProject.Common.Document,string[],string,string,string,bool,bool",
+      "Id": "ca64a86603384fd2ae57f874228a85b9",
+      "Inputs": [
+        {
+          "Id": "c3ea4707e2984847ab8cf8addb9380cb",
+          "Name": "familyDocument",
+          "Description": "Family document (rfa) as Orchid document\n\nDocument\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "306d8a63402047b198adb0d068365d52",
+          "Name": "parameterName",
+          "Description": "The name of the parameter to create\n\nstring[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "344e9f66e474444bb4932ca64a3ab7ea",
+          "Name": "type",
+          "Description": "Parameter Type\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "16b581032908418699e3c07ab2e32c9e",
+          "Name": "group",
+          "Description": "Parameter Group\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "6a6d40f2eab9434c985acaff2792b48e",
+          "Name": "tooltip",
+          "Description": "Tooltip for the parameter\n\nstring\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "b1087817be35498a96628abeb87bdc38",
+          "Name": "instance",
+          "Description": "Is instance parameter, otherwise it's a type parameter\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "69c81e5fc1fd47abb08355241fc306f3",
+          "Name": "reporting",
+          "Description": "Is reporting parameter. Is only available to Length and Angle parameters!\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2051b46a6f7542a58c99eb4d3fb73458",
+          "Name": "Parameter",
+          "Description": "Parameter as Orchid type",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Add (create) parameter by name\n\nParameter.Add (familyDocument: Document = null, parameterName: string[], type: string, group: string, tooltip: string = null, instance: bool = false, reporting: bool = false): var[]..[]"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "d5b6442fda854e758ab22cd19177d416",
+      "Inputs": [
+        {
+          "Id": "fc7ecbecd3fc4a48a229f7f578ad92b2",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "0859d83a06d04f99a61b5a2255eaee7f",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "archilabUI.ParameterTypeUi, archilabUI",
+      "SelectedIndex": 125,
+      "SelectedString": "Text",
+      "NodeType": "ExtensionNode",
+      "Id": "ec7952340f6c44c6a8d9bffa8c513eba",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0a5be069375c4337a5b9f1126b5afb01",
+          "Name": "parameterType",
+          "Description": "The selected parameterType",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Retrieve all available Parameter Types from Revit project."
+    },
+    {
+      "ConcreteType": "archilabUI.ParameterGroupUi, archilabUI",
+      "SelectedIndex": 0,
+      "SelectedString": "INVALID",
+      "NodeType": "ExtensionNode",
+      "Id": "60435218732f454f9ed25fab39112a3e",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2fc1e63b6c3743908234cdace2b2e7fa",
+          "Name": "parameterGroup",
+          "Description": "The selected parameterGroup",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Retrieve all available Parameter Groups."
+    },
+    {
+      "ConcreteType": "archilabUI.Relay.Relay, archilabUI",
+      "NodeType": "ExtensionNode",
+      "Id": "b341c7aa8e104d2d85733d8a3dc0f7c4",
+      "Inputs": [
+        {
+          "Id": "561688581456417aa845a9df01e03387",
+          "Name": "",
+          "Description": "Input",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "2e90f0dccf8b424da4fa5e520939c673",
+          "Name": "",
+          "Description": "Output",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Relays data. Useful for Wire management."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "76930c814e21428fb80f8799fa7bdcc5",
+      "End": "fc7ecbecd3fc4a48a229f7f578ad92b2",
+      "Id": "41cd0aa62d294b008f0400604a1de71c"
+    },
+    {
+      "Start": "c072a31758af4877b2c65f7356cbc992",
+      "End": "b1087817be35498a96628abeb87bdc38",
+      "Id": "3e072c7739024525a08f4de3bb013dcf"
+    },
+    {
+      "Start": "0859d83a06d04f99a61b5a2255eaee7f",
+      "End": "306d8a63402047b198adb0d068365d52",
+      "Id": "fce9b8bd0eba42d2bc970995c5617a89"
+    },
+    {
+      "Start": "0a5be069375c4337a5b9f1126b5afb01",
+      "End": "561688581456417aa845a9df01e03387",
+      "Id": "5a53779e9cea4b41be2cc7eb13a53f38"
+    },
+    {
+      "Start": "2fc1e63b6c3743908234cdace2b2e7fa",
+      "End": "16b581032908418699e3c07ab2e32c9e",
+      "Id": "c2f8586e9fca492da97d64fa52475fe8"
+    },
+    {
+      "Start": "2e90f0dccf8b424da4fa5e520939c673",
+      "End": "344e9f66e474444bb4932ca64a3ab7ea",
+      "Id": "d003fbc991664218b512e08c8a8be32f"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Orchid",
+      "Version": "230.1.0.7697",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "ca64a86603384fd2ae57f874228a85b9"
+      ]
+    },
+    {
+      "Name": "archi-lab.net",
+      "Version": "2020.23.13",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "ec7952340f6c44c6a8d9bffa8c513eba",
+        "60435218732f454f9ed25fab39112a3e",
+        "b341c7aa8e104d2d85733d8a3dc0f7c4"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "cbdf929de0414f18aaf084217c94054f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1834.5222952266836,
+        "Y": 3166.3934299356174
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "fe1f11f2d6c543118c93f90025f6e8ae",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2241.9134649096331,
+        "Y": 3372.6452694968161
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Parameter.Add",
+        "Id": "ca64a86603384fd2ae57f874228a85b9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2434.4512666292571,
+        "Y": 3199.6280798239422
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "d5b6442fda854e758ab22cd19177d416",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2127.4529183139957,
+        "Y": 3162.0284482789621
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Parameter Types",
+        "Id": "ec7952340f6c44c6a8d9bffa8c513eba",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1969.3940492020311,
+        "Y": 3399.6732972606828
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Parameter Groups",
+        "Id": "60435218732f454f9ed25fab39112a3e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1908.7306100006085,
+        "Y": 3298.3820501537202
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Relay",
+        "Id": "b341c7aa8e104d2d85733d8a3dc0f7c4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2259.722657915644,
+        "Y": 3326.5506885423129
+      }
+    ],
+    "Annotations": [],
+    "X": -2534.884027531185,
+    "Y": -4190.823355609853,
+    "Zoom": 1.4374391090895275
+  }
+}

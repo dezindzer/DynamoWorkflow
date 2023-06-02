@@ -1,0 +1,149 @@
+{
+  "Uuid": "c3385097-04cf-4e5b-a91d-eedafcd76c06",
+  "IsCustomNode": false,
+  "Description": null,
+  "Name": "ŠEROVANI PARAMETRI",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Revit.Elements.Element.Name",
+      "Id": "82095ac2faab406bb81da645108edf03",
+      "Inputs": [
+        {
+          "Id": "589c7e6f232946b6a92366a91ba59c65",
+          "Name": "element",
+          "Description": "Revit.Elements.Element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "abeb97a0f0484796a781af91f6958393",
+          "Name": "string",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the Name of the Element\n\nElement.Name: string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Orchid.RevitProject.Parameters.Parameter.SharedParameters@Orchid.RevitProject.Common.Document",
+      "Id": "803b8fba93084e0984ff263e5c0155be",
+      "Inputs": [
+        {
+          "Id": "5c7fedc3cebd4f6098ee4d51ec520b95",
+          "Name": "document",
+          "Description": "Document (rvt) as Orchid document\n\nDocument\nDefault value : null",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5031f831d9a64e9f83b894c04c3e2a77",
+          "Name": "parameter",
+          "Description": "List of parameters",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "dc7e00c3e3aa48aa8c1586485959eae9",
+          "Name": "guid",
+          "Description": "List of guids",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get all shared parameters in the document\n\nParameter.SharedParameters (document: Document = null): var[]..[]"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "5031f831d9a64e9f83b894c04c3e2a77",
+      "End": "589c7e6f232946b6a92366a91ba59c65",
+      "Id": "59628311ee934de8b7639ec96fb7e5ea"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Orchid",
+      "Version": "230.0.1.7437",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "803b8fba93084e0984ff263e5c0155be"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": true,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.0.5885",
+      "RunType": "Automatic",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Element.Name",
+        "Id": "82095ac2faab406bb81da645108edf03",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 860.0,
+        "Y": 569.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Parameter.SharedParameters",
+        "Id": "803b8fba93084e0984ff263e5c0155be",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 530.0,
+        "Y": 547.0
+      }
+    ],
+    "Annotations": [],
+    "X": -567.072520993507,
+    "Y": -72.177969523239881,
+    "Zoom": 1.1047642563030275
+  }
+}
